@@ -1,7 +1,5 @@
 # [探索] 利用promise做一个请求锁
 
-data: 2018/07/20
-
 > 在最近开发小程序的过程中，遇到一个需求，就是请求的时候header需要带上accessToken, accessToken是通过登陆接口返回的参数，可能会出现过期的情况，则需要重新登陆，所以每次加载小程序都会进行一次本地储存的accessToken校验，但是再小程序的运行机制下，app的onLaunch，加载pages的onLoad会并发执行，在弱网的情况下，并发可能导致accessToken还没校验完，page的请求函数就开始执行了，这样很容易会导致接口异常，本来的解决办法是在每个page页面调接口之前都await一下app.js里面checkAccessToken的方法，但是这样写起来不太友好
 
 解决思路：
