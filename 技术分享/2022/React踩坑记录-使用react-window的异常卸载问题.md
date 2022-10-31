@@ -15,7 +15,59 @@
 
 有兴趣的小伙伴可以先code-review看看以下代码存在什么问题
 
-![carbon.png](../../assets/2022/1031/02.png)
+```jsx
+import { useState, useEffect } from 'react';
+import { FixedSizeList as List } from 'react-window';
+
+const list = [0, 1, 2, 3, 4, 5];
+
+// 每一行的item，点击之后就切换成loading状态，三秒后复原
+const Item = ({ style, children }) => {
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (loading) {
+      setTimeout(() => {
+        setLoading(false);
+      }, 3000);
+    }
+  }, [loading]);
+
+  return (
+    <div
+      style={{ ...style, cursor: 'pointer' }}
+      onClick={() => {
+        setLoading(true);
+      }}
+    >
+      {loading ? 'loading - ' : null} {children}
+    </div>
+  );
+};
+
+const Example = () => {
+  return (
+    <List
+      style={{ border: '1px solid #333' }}
+      height={300}
+      itemCount={list.length}
+      itemSize={35}
+      width={300}
+    >
+      {({ index, style }) => {
+        return (
+          <Item key={index} style={style}>
+            Row {index}
+          </Item>
+        );
+      }}
+    </List>
+  );
+};
+
+export default Example;
+
+```
 
 代码实际运行效果
 
