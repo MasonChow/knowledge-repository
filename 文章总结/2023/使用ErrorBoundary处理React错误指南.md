@@ -1,10 +1,10 @@
-#ErrorBoundary #react #Error #react-hooks 
+# 使用ErrorBoundary处理React错误指南
 
 >文章来源: https://www.developerway.com/posts/how-to-handle-errors-in-react
 
 ## 特别注意
 
-[[ErrorBoundary]]一般只会捕获React生命周期过程中产生的错误，所以以下情况并不会触发
+ErrorBoundary一般只会捕获React生命周期过程中产生的错误，所以以下情况并不会触发
 
 - 事件处理触发
 - 异步事件
@@ -15,7 +15,7 @@
 
 ## 解法
 
-解法很简单，只要捕获错误并把错误丢到React更新事件内即可。React官方有了个hack的手段触发[[ErrorBoundary]]([相关React Issues](https://github.com/facebook/react/issues/14981#issuecomment-468460187))
+解法很简单，只要捕获错误并把错误丢到React更新事件内即可。React官方有了个hack的手段触发ErrorBoundary([相关React Issues](https://github.com/facebook/react/issues/14981#issuecomment-468460187))
 
 ```jsx
 setState(() => {
